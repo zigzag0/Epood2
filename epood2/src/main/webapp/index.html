@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>EPood2</title>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <style>
+            #simplemodal-container a.modalCloseImg {
+                background:url(/img/x.png) no-repeat; /* adjust url as required */
+                width:25px;
+                height:29px;
+                display:inline;
+                z-index:3200;
+                position:absolute;
+                top:-15px;
+                right:-18px;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/login.js"></script>
+        <script src="js/catalogs.js"></script>
+         
+        <div id="login-line"><span id="login-name"></span> <a href="#logout" id="logout">Logout</a></div>
+        
+        <div id="content"></div>
+        
+        <div id="login-form" title="Login">
+          <form>
+            <label for="user">Username</label>
+            <input type="text" name="usr" id="name" class="text ui-widget-content ui-corner-all">
+            <label for="pwd">Password</label>
+            <input type="password" name="pwd" id="pwd"class="text ui-widget-content ui-corner-all">
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            <div id="login-err"></div>
+          </form>
+        </div>
+        
+        <div id="add-catalog-form" title="Add catalog">
+          <form>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            <div id="add-err"></div>
+          </form>
+        </div>
+        
+        <script>
+          var theLogin = new $.Login($("#login-form"));
+          var theCatalogs = new $.Catalogs($("#add-catalog-form"));
+          
+          theLogin.initContent = function(){
+              theCatalogs.showCatalogs();
+          };
+          theLogin.checkLogin();
+        </script>
+    </body>
+</html>
